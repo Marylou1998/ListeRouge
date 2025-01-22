@@ -1,3 +1,7 @@
+Itch.io :
+https://maryloug.itch.io/liste-rouge
+mdp : jv2d
+
 Ce jeu a été créé avec P5.js et javascript "adapté" à P5.js. ChatGPT a été utilisé pour m'aider à comprendre la structure du code, et comprendre à quel niveau ajouter les fonctions pour qu'elles fonctionnent correctement
 L'utilisation de ChatGPT a permis d'aller beaucoup plus loin dans le développement du jeu vidéo. Pour référence, voir la première version "fonctionnelle" du jeu, sans les ajouts pour lesquels j'ai eu besoin d'utiliser chatGPT : "version 1"
 
