@@ -6,9 +6,9 @@ Les données sont celles indiquées par les Listes rouges de l'Office fédéral 
 Les classes choisies ont été : 1. Moyens et grands mammifères 2. Reptiles 3. Amphibiens 4. Oiseaux nicheurs
 
 Les espèces représentées sont les espèces : 
-<ul>Au bord de l'extinction (CR)</ul>ul>
-<ul>En danger (EN)</ul>
-<ul>Vulnérable (VU)</ul>
+<il>Au bord de l'extinction (CR)</il>
+<il>En danger (EN)</il>
+<il>Vulnérable (VU)</il>
 Ces espèces sont compilées dans un fichier json : 
 ![image](https://github.com/user-attachments/assets/788dc1b5-1561-477b-badd-8d74b8ea0788)
 Le fichier Json donne les informations suivantes : l'icône pour représenter à quelle classe l'animal appartient - le nom de l'espèce - son degré sur la liste rouge (CR, EN, VU).
@@ -24,10 +24,10 @@ Exemple : pour le mini-jeu "Amphibiens", 21% des espèces ne sont pas menacées 
 
 <h3>Récompense par mini-jeu</h3>
 Lorsqu'un mini-jeu est terminé, le joueur obtient des petites récompenses immédiates : 
-<ul>Le nom des espèces qu'il a réussi à découvrir en grattant la zone à dessiner sont révélées.</ul>
-<ul>Il découvre une espèce disparue en Suisse (sauf pour les reptiles qui ne comprennent pas d'espèces régionalement disparues. Pour ce cas, on révèle une anecdote sur le cri de la tortue pour réaliser le cri du vélociraptor dans <i>Jurassic Park</i>). Notamment, le cri que faisait cet animal se déclenche.</ul>
-<ul>On donne aussi les références des vignettes et du cri de l'animal disparu.</ul>
-<ul>Un petit effet de confettis se déclenche avec l'icône de l'espèce.</ul>
+<il>Le nom des espèces qu'il a réussi à découvrir en grattant la zone à dessiner sont révélées.</il>
+<il>Il découvre une espèce disparue en Suisse (sauf pour les reptiles qui ne comprennent pas d'espèces régionalement disparues. Pour ce cas, on révèle une anecdote sur le cri de la tortue pour réaliser le cri du vélociraptor dans <i>Jurassic Park</i>). Notamment, le cri que faisait cet animal se déclenche.</il>
+<il>On donne aussi les références des vignettes et du cri de l'animal disparu.</il>
+<il>Un petit effet de confettis se déclenche avec l'icône de l'espèce.</il>
 Exemple pour l'icône amphibien : 
 ![image](https://github.com/user-attachments/assets/8803386b-023a-4412-93c8-ab9ab00105d8)
 Cet icône sera repris ensuite dans la récompense finale.
