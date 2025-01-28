@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dessine la Liste rouge des espèces suisses</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&display=swap" rel="stylesheet">
+
+  <style>
+   
+  </style>
+</head>
+<body>
+  <div id="menu">
+  <!-- Possibilité d'ajouter toutes les autres classes sur le site de l'OFEV, par ex. chauve-souris, etc... -->
+    <button onclick="loadGame('lynx')">Les mammifères<br>moyens et grands</button>
+    <button onclick="loadGame('amphibien')">Les amphibiens</button>
+    <button onclick="loadGame('oiseau')">Les oiseaux nicheurs</button>
+    <button onclick="loadGame('reptile')">Les reptiles</button>
+
+   <!--    
+        <a href="https://www.infofauna.ch/fr#gsc.tab=0" target="_blank">info fauna</a><br><a href="https://www.bafu.admin.ch/bafu/fr/home/themes/biodiversite/publications/publications-biodiversite/liste-rouge-especes-menacees.html" target="_blank">Liste rouge 2024</a>
+      </div>
+-->
+
+  </div>
+
+  <div id="pourcent">Quel pourcentage pourras-tu dessiner ?<br><div id="percentage-display">0%</div></div>
+
+  <div id="game-container">
+    <div id="image-container">  </div>
+
+  <div id="sources">
+    Choisis la classe que tu veux dessiner.
+    <br>Maintiens la souris ou ton pad enfoncé pour dessiner.
+    <br>Le pourcentage t'indique quel pourcentage de cette espèce n'est pas menacée selon les données de l'Office fédéral de l'environnement. 
+    <br>Alors, quel pourcentage pourras-tu dessiner ?</div>
+  </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/addons/p5.sound.min.js"></script>
+
+<script src="main.js"></script>
+  
+  <div id="sidebar">
+    <div id="message"></div>
+  </div>
+
+</body>
+</html>
