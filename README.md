@@ -67,3 +67,5 @@ Raymond Rollinat, <i>La Vie des reptiles de la France centrale</i>, 1939
 
 <h1>Contexte de développement</h1>
 Ce projet a été développé dans le cadre du cours <i>Développement de jeu vidéo 2D</i>, dispensé par Isaac Pante (SLI, Lettres, UNIL, Semestre de printemps 2023).
+
+Aidée par d'autres étudiants en développement de jeu vidéo hors-UNIL, à des stades similaires ou plus avancés que moi.
