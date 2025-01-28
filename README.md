@@ -61,9 +61,9 @@ Thierry Hoquet, <i>Buffon Illustré, Publications scientifiques du Muséum</i>, 
 Raymond Rollinat, <i>La Vie des reptiles de la France centrale</i>, 1939
 
 <h1>Sources audio</h1>
-https://soundeffects.fandom.com/wiki/Jurassic_Park,_Velociraptor_-_Roar#Audio_Samples
-https://www.batraciens-reptiles.com/viridislesbos2.mp3
-Jean-Claude Roché, <i>La Vie secrète des champs et des pâturages</i>, 1999
+<ul>https://soundeffects.fandom.com/wiki/Jurassic_Park,_Velociraptor_-_Roar#Audio_Samples</ul>
+<ul>https://www.batraciens-reptiles.com/viridislesbos2.mp3</ul>
+<ul>Jean-Claude Roché, <i>La Vie secrète des champs et des pâturages</i>, 1999</ul>
 
 <h1>Contexte de développement</h1>
 Ce projet a été développé dans le cadre du cours <i>Développement de jeu vidéo 2D</i>, dispensé par Isaac Pante (SLI, Lettres, UNIL, Semestre de printemps 2023).
