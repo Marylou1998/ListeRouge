@@ -32,6 +32,7 @@ Lorsqu'un mini-jeu est terminé, le joueur obtient des petites récompenses imm�
 <il>On donne aussi les références des vignettes et du cri de l'animal disparu.</il>
 <il>Un petit effet de confettis se déclenche avec l'icône de l'espèce.</il>
 Exemple pour l'icône amphibien : 
+
 ![image](https://github.com/user-attachments/assets/8803386b-023a-4412-93c8-ab9ab00105d8)
 Cet icône sera repris ensuite dans la récompense finale.
 Au niveau de l'avancée graphique, le bouton correspondant à l'espèce terminée se remplit au pourcentage correspondant : 
