@@ -10,9 +10,11 @@ Les espèces représentées sont les espèces :
 <il>En danger (EN)</il>
 <il>Vulnérable (VU)</il>
 Ces espèces sont compilées dans un fichier json : 
+
 ![image](https://github.com/user-attachments/assets/788dc1b5-1561-477b-badd-8d74b8ea0788)
 Le fichier Json donne les informations suivantes : l'icône pour représenter à quelle classe l'animal appartient - le nom de l'espèce - son degré sur la liste rouge (CR, EN, VU).
 Les espèces éteintes en Suisse (RE) sont utilisées pour le système de récompense.
+
 ![image](https://github.com/user-attachments/assets/ee358824-53da-4606-8199-33229e9c31de)
 
 <h2>Mécaniques du jeu</h2>
@@ -20,6 +22,7 @@ Les espèces éteintes en Suisse (RE) sont utilisées pour le système de récom
 La mécanique principale de jeu est d'empêcher le joueur de continuer à gratter lorsqu'il a atteint un certain pourcentage. Il ne peut donc pas débloquer toutes les espèces, ou du moins pas les voir complètement. Le pourcentage auquel le jeu se bloque est le pourcentage d'espèces qui ne sont pas menacées ; le joueur n'a donc pas accès au pourcentage d'espèces menacées, qui restent cachées sous le layer blanc.
 
 Exemple : pour le mini-jeu "Amphibiens", 21% des espèces ne sont pas menacées et peuvent donc être dessinées. 79% des espèces sont menacées et restent donc cachées.
+
 ![image](https://github.com/user-attachments/assets/74967e45-a530-4708-a94c-69306786ac3a)
 
 <h3>Récompense par mini-jeu</h3>
@@ -32,10 +35,12 @@ Exemple pour l'icône amphibien :
 ![image](https://github.com/user-attachments/assets/8803386b-023a-4412-93c8-ab9ab00105d8)
 Cet icône sera repris ensuite dans la récompense finale.
 Au niveau de l'avancée graphique, le bouton correspondant à l'espèce terminée se remplit au pourcentage correspondant : 
+
 ![image](https://github.com/user-attachments/assets/d22fda8d-dea0-4724-88ae-0e5380a0ee43)
 
 <h3>Récompense finale</h3>
 Le joueur a accès aux "crédits", c'est-à-dire la liste complète des espèces menacées en Suisse pour les classes sélectionnées.
+
 ![image](https://github.com/user-attachments/assets/096b2e85-d826-4e8b-abdf-ee6730f07ac9)
 
 <h1>Librairie utilisée: P5.js</h1>
@@ -44,9 +49,9 @@ P5.js est exporté directement dans le code, et est utilisé dans le "canva" (zo
 exemple : les confettis, notamment pour les faire partir du centre du canva, et pour calculer leur vitesse, comment ils "tombent", leur nombre...
 
 P5.js est aussi utilisé dans la gestion des couches du canva :
-<ul>Le background : les vignettes des animaux. Ce layer n'est pas interactif.</ul>
-<ul>Une couche supérieure : la zone de dessin à gratter. Le pourcentage est calculé sur cette couche.</ul>
-<ul>Une couche intermédiaire, fractionnée en plusieurs zones couvrant exactement la zone de la vignette en-dessous d'elle. Elle permet de calculer si un pixel a été modifié sur la couche de surface qui correspond à la zone d'une vignette. Si un pixel a été modifié, alors le nom de la vignette correspondant apparaît dans la liste des espèces découvertes.</ul>
+<il>Le background : les vignettes des animaux. Ce layer n'est pas interactif.</il>
+<il>Une couche supérieure : la zone de dessin à gratter. Le pourcentage est calculé sur cette couche.</il>
+<il>Une couche intermédiaire, fractionnée en plusieurs zones couvrant exactement la zone de la vignette en-dessous d'elle. Elle permet de calculer si un pixel a été modifié sur la couche de surface qui correspond à la zone d'une vignette. Si un pixel a été modifié, alors le nom de la vignette correspondant apparaît dans la liste des espèces découvertes.</il>
 
 <h1>Sources graphiques</h1>
 M. Dumont de Sainte-Croix, <i>Dictionnaire des sciences naturelles. Planches. Zoologie : Poissons et reptiles</i>, 1816
