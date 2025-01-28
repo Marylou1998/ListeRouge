@@ -3,7 +3,7 @@ Représenter la masse d'espèces vulnérables ou en danger en Suisse en reprenan
 
 <h2>Données : Liste Rouge de l'OFEV</h2>
 Les données sont celles indiquées par les Listes rouges de l'Office fédéral de l'environnement OFEV.
-Les classes choisies ont été : 1. Moyens et grands mammifères 2. Reptiles 3. Amphibiens 4. Oiseaux nicheurs
+<br>Les classes choisies ont été : 1. Moyens et grands mammifères 2. Reptiles 3. Amphibiens 4. Oiseaux nicheurs
 
 Les espèces représentées sont les espèces : 
 <il>Au bord de l'extinction (CR)</il>
@@ -13,7 +13,7 @@ Ces espèces sont compilées dans un fichier json :
 
 ![image](https://github.com/user-attachments/assets/788dc1b5-1561-477b-badd-8d74b8ea0788)
 Le fichier Json donne les informations suivantes : l'icône pour représenter à quelle classe l'animal appartient - le nom de l'espèce - son degré sur la liste rouge (CR, EN, VU).
-Les espèces éteintes en Suisse (RE) sont utilisées pour le système de récompense.
+<br>Les espèces éteintes en Suisse (RE) sont utilisées pour le système de récompense.
 
 ![image](https://github.com/user-attachments/assets/ee358824-53da-4606-8199-33229e9c31de)
 
@@ -34,6 +34,8 @@ Lorsqu'un mini-jeu est terminé, le joueur obtient des petites récompenses imm�
 Exemple pour l'icône amphibien : 
 
 ![image](https://github.com/user-attachments/assets/8803386b-023a-4412-93c8-ab9ab00105d8)
+
+
 Cet icône sera repris ensuite dans la récompense finale.
 Au niveau de l'avancée graphique, le bouton correspondant à l'espèce terminée se remplit au pourcentage correspondant : 
 
@@ -56,9 +58,9 @@ P5.js est aussi utilisé dans la gestion des couches du canva :
 
 <h1>Sources graphiques</h1>
 M. Dumont de Sainte-Croix, <i>Dictionnaire des sciences naturelles. Planches. Zoologie : Poissons et reptiles</i>, 1816
-M. Dumont de Sainte-Croix, <i>Dictionnaire des sciences naturelles. Planches. Zoologie : Ornithologie</i>, 1816
-Thierry Hoquet, <i>Buffon Illustré, Publications scientifiques du Muséum</i>, 2007
-Raymond Rollinat, <i>La Vie des reptiles de la France centrale</i>, 1939
+<br>M. Dumont de Sainte-Croix, <i>Dictionnaire des sciences naturelles. Planches. Zoologie : Ornithologie</i>, 1816
+<br>Thierry Hoquet, <i>Buffon Illustré, Publications scientifiques du Muséum</i>, 2007
+<br>Raymond Rollinat, <i>La Vie des reptiles de la France centrale</i>, 1939
 
 <h1>Sources audio</h1>
 <ul>https://soundeffects.fandom.com/wiki/Jurassic_Park,_Velociraptor_-_Roar#Audio_Samples</ul>
