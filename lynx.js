@@ -218,6 +218,12 @@ export default function(p) {
         }
       }
     }
+
+    // Mise à jour de la barre de progression : la barre doit atteindre 100% quand on atteint maxPercentage (65)
+const progressBar = document.getElementById('progress-bar');
+const progressBarWidth = p.map(percentage, 0, maxPercentage, 0, 100);
+progressBar.style.width = progressBarWidth + '%';
+
     if (!soundPlaying) {
       sound.loop();
       soundPlaying = true;
