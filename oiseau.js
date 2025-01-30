@@ -152,7 +152,6 @@ export default function(p) {
         }
 
         messageContent += '<br><br>Le chant que tu entends est celui du <b>cochevis huppé</b>. Il est éteint en Suisse depuis 1976.<br><br>';
-        messageContent += 'Source de l\'audio :  Jean-Claude Roché, <i>La vie secrète des champs et des pâturages</i><br>Source des illustrations : Dumont de Sainte-Croix, <i>Dictionnaire des sciences naturelles. Planches. Ortnithologie</i>';
     
         document.getElementById('message').innerHTML = messageContent;
 
