@@ -160,7 +160,7 @@ export default function(p) {
         messageContent += '<br>le <b>lapin de garenne</b>';
       }
       
-      messageContent += '<br><br>Le rugissement que tu entends est celui de l\'<b>ours brun</b>, mais tu ne l\'entendras plus en Suisse : il est éteint.<br><br>Source des illustrations : Buffon, <i>Histoire naturelle</i> (compilées par Thierry Hoquet, <i>Buffon illustré</i>),';
+      messageContent += '<br><br>Le rugissement que tu entends est celui de l\'<b>ours brun</b>, mais tu ne l\'entendras plus en Suisse : il est éteint.';
 
       document.getElementById('message').innerHTML = messageContent;
 
