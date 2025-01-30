@@ -216,6 +216,12 @@ let messageContent = '<h1>En Suisse, 79% des amphibiens sont des espèces menac�
 }
 }
 
+    // Mise à jour de la barre de progression : la barre doit atteindre 100% quand on atteint maxPercentage (20)
+const progressBar = document.getElementById('progress-bar');
+const progressBarWidth = p.map(percentage, 0, maxPercentage, 0, 100);
+progressBar.style.width = progressBarWidth + '%';
+
+
   if (!soundPlaying) {
       sound.loop();
       soundPlaying = true;
