@@ -27,16 +27,16 @@
 
   </div>
 
-  <div id="pourcent">Quel pourcentage pourras-tu dessiner ?<br><div id="percentage-display">0%</div></div>
+  <div id="pourcent">Attention ! Tu ne peux pas tout découvrir !<br>
+    <div id="progress-container"><div id="progress-bar"></div>
+    </div>
+    
+</div>
 
   <div id="game-container">
     <div id="image-container">  </div>
 
-  <div id="sources">
-    Choisis la classe que tu veux dessiner.
-    <br>Maintiens la souris ou ton pad enfoncé pour dessiner.
-    <br>Le pourcentage t'indique quel pourcentage de cette espèce n'est pas menacée selon les données de l'Office fédéral de l'environnement. 
-    <br>Alors, quel pourcentage pourras-tu dessiner ?</div>
+  <div id="sources"><p>Choisis la classe que tu veux découvrir parmi les boutons à gauche.<br>Maintiens la souris ou ton pad enfoncé pour effacer la couche supérieure et découvrir les vignettes des animaux qui se cachent dessous.</p><p>Pendant que tu grattes, un pourcentage s'affiche. <br>Tu ne pourras pas monter jusqu'à 100%.</p><p>Pourquoi ? <br>Parce que dans toutes ces classes, plusieurs espèces sont menacées en Suisse.<br>Tu ne pourras découvrir qu'un certain pourcentage... celui des espèces qui ne sont pas menacées en Suisse. <br>Le reste restera caché à jamais...</p><p>Alors, quelles espèces vas-tu réussir à trouver ?</p>
   </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
@@ -47,6 +47,12 @@
   <div id="sidebar">
     <div id="message"></div>
   </div>
+
+  <div id="info-button">i</div>
+<div id="info-overlay"><h2>Sources</h2>
+<h3>Audios</h3>Jean-Claude Roché, <i>La vie secrète des champs et des pâturages</i> [oiseau]<br>https://www.batraciens-reptiles.com/viridislesbos2.mp3 [amphibien]<br>"Jurassic Park, Velociraptor - roar", soundeffects.fandom.com [reptiles]
+<h3>Illustrations</h3>M. Dumont de Sainte-Croix, <i>Dictionnaire des sciences naturelles. Planches. Zoologie : Poissons et reptiles</i>, 1816.<br>M. Dumont de Sainte-Croix, <i>Dictionnaire des sciences naturelles. Planches. Zoologie : Ornithologie</i>, 1816.<br>Thierry Hoquet, <i>Buffon Illustré, Publications scientifiques du Muséum</i>, 2007<br>Raymond Rollinat, <i>La Vie des reptiles de la France centrale</i>, 1939.
+</div>
 
 </body>
 </html>
