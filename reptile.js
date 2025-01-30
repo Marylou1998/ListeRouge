@@ -167,7 +167,6 @@ export default function(p) {
     }
 
     messageContent += '<br><br>Mais le <b>bruit</b> que tu viens d\'entendre n\'est celui d\'aucun d\'entre elles : il n\'y a pas de reptiles éteints en Suisse !<br><br>En fait, tu auras peut-être reconnu le cri du Vélociraptor dans <i>Jurassic Park</i>, qui a été produit grâce à... des cris de tortue !';
-    messageContent += '<br>Source de l\'audio : "Jurassic Park, Velociraptor - roar", soundeffects.fandom.com<br>Source des illustrations : Raymond Rollinat, <i>La Vie des reptiles de la France centrale</i>';
 
     document.getElementById('message').innerHTML = messageContent;
 
