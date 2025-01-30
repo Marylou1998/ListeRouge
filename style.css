@@ -36,7 +36,7 @@
     top: 1vh;
     left: 50%;
     transform: translateX(-50%);
-    width: 20vw;
+    width: 22vw;
     height: 4vh;
     background-color: rgba(0, 0, 0, 0.7);
     color: white;
@@ -94,17 +94,22 @@
     font-size: 1em;
   }
   
-  #sources {
-    width: 20%;
-    position: fixed;
-    left: 50%;
-    bottom: 40%;
-    transform: translateX(-50%);
-    background-color: white;
-    cursor: pointer;
-    border-radius: 5px;
-    color: black;
-  }
+    #sources {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50%;
+      height: 50%;
+      background-color: rgba(255, 255, 255, 0.95);
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      z-index: 1000;
+    }
 
   #game-container {
     width: 60%;
@@ -181,4 +186,49 @@
     background-repeat: no-repeat;
   }
   
+  #info-button {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    font-family: 'Poppins', sans-serif;
+    z-index: 1000;
+  }
+  
+  #info-overlay {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 20vw;
+    height: 80vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    display: none; /* Caché par défaut */
+    z-index: 999;
+  }
 
+
+#progress-container {
+  width: 100%; 
+  background-color: #ccc;
+  height: 20px; 
+  border-radius: 10px
+}
+  
+#progress-bar {
+  height: 100%; 
+  width: 0%; 
+  background-color: #4caf50; 
+  border-radius: 10px  
+}
