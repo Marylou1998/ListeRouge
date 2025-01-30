@@ -1,11 +1,21 @@
 let currentGame;
 
-//Hors des mini-jeux car sinon problèmes d'affichages, voire affichage double (même position mais fonctionne à double)
-let percentageDisplay = document.getElementById('percentage-display');
 
 //choisi de c/c la structure des jeux et d'ajouter les spécificités de canva, de textes et d'images plutôt que de créer un main.js avec la structure globale et les spécificités liées.
 //plus simple au vu de mes compétences.
+function closeOverlay() {
+  const overlay = document.getElementById("sources");
+  if (overlay) {
+    overlay.style.display = "none";
+  } else {
+    console.error("L'élément #sources n'existe pas !");
+  }
+}
+
+// Modification de loadGame pour fermer l'overlay
 function loadGame(gameName) {
+  closeOverlay(); // Ferme l'overlay dès qu'un jeu est chargé
+
   const messageElement = document.getElementById('message');
 
   if (messageElement) {
@@ -58,19 +68,9 @@ function loadGame(gameName) {
   }
 }
 
-function updatePercentage() {
-  if (currentGame) {
-    let percentage = currentGame.getCoveredPercentage();
-    const percentageDisplay = document.getElementById('percentage-display');
-      if (percentageDisplay) {
-        percentageDisplay.innerText = percentage.toFixed(0) + '%';  // Entre () le nb de décimales qu'on veut
-        //ajouter les décimales donne trop d'infos par rapport à la taille de la brush qui est énorme. N'a pas de sens.
-      }
-  }
-}
+
 
 function draw() {
-  updatePercentage();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -135,3 +135,28 @@ window.completeMiniGame = function (gameName) {
     }
   };
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  const infoButton = document.getElementById("info-button");
+  const infoOverlay = document.getElementById("info-overlay");
+
+  infoButton.addEventListener("mouseenter", function () {
+    infoOverlay.style.display = "block";
+  });
+
+  infoOverlay.addEventListener("mouseenter", function () {
+    infoOverlay.style.display = "block";
+  });
+
+  infoOverlay.addEventListener("mouseleave", function () {
+    infoOverlay.style.display = "none";
+  });
+
+  infoButton.addEventListener("mouseleave", function (event) {
+    // Vérifie si la souris quitte vers l'overlay, sinon le masque
+    if (!infoOverlay.contains(event.relatedTarget)) {
+      infoOverlay.style.display = "none";
+    }
+  });
+});
+
