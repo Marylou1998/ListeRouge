@@ -155,7 +155,6 @@ let messageContent = '<h1>En Suisse, 79% des amphibiens sont des espèces menac�
           messageContent += '<br>le <b>triton ponctué</b>';
         }
         messageContent += '<br><br>Le chant que tu entends est celui d\'un crapaud vert. Le dernier crapaud vert de SUisse a dû faire, lui aussi, cet appel solitaire, lorsqu\'il s\'est éteint en 1980.';
-        messageContent += '<br>Source de l\'audio :www.batraciens-reptiles.com<br>Illustrations : <i>Dictionnaire des sciences naturelles. Planches. Zoologie : poissons et reptiles</i>';
 
         document.getElementById('message').innerHTML = messageContent;
 
