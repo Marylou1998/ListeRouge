@@ -4,12 +4,14 @@ export default function(p) {
   let totalPixels; 
   let hasModified = [];
   const brushSize = 80;
-  const maxPercentage = 21; //21
+  const maxPercentage = 20; //21
   let successSound;
   let confetti = [];
   let confettiImg;
   let sound;
   let soundPlaying = false;
+  let totalPixelsPerImage;
+  let modifiedPixelsPerImage;
 
   const imagePaths = [
     '/images/cistudeEurope.png',
@@ -40,6 +42,8 @@ export default function(p) {
 
   p.setup = function() {
     p.createCanvas(720, 500);
+
+    document.getElementById('progress-bar').style.width = '0%';
 
     const canvasElement = p.canvas;
     canvasElement.classList.add('canvas-center');
@@ -75,9 +79,10 @@ export default function(p) {
     topLayer.image(topImg, 0, 0);
 
     totalPixels = p.width * p.height;
-    hasModified = new Array(totalPixels).fill(false);
-
+    totalPixelsPerImage = (p.width * p.height) / images.length;
+    modifiedPixelsPerImage = new Array(images.length).fill(0);
     revealedImages = new Array(images.length).fill(false);
+    hasModified = new Array(p.width * p.height).fill(false);
 
     p.noStroke();
   };
@@ -167,7 +172,6 @@ export default function(p) {
     }
 
     messageContent += '<br><br>Mais le <b>bruit</b> que tu viens d\'entendre n\'est celui d\'aucun d\'entre elles : il n\'y a pas de reptiles éteints en Suisse !<br><br>En fait, tu auras peut-être reconnu le cri du Vélociraptor dans <i>Jurassic Park</i>, qui a été produit grâce à... des cris de tortue !';
-
     document.getElementById('message').innerHTML = messageContent;
 
 
@@ -178,6 +182,7 @@ export default function(p) {
         triggerConfetti();
 
         completeMiniGame('reptile');
+
 
         const couleuvreButton = document.querySelector('button[onclick="loadGame(\'reptile\')"]');
         if (couleuvreButton) {
@@ -194,41 +199,55 @@ export default function(p) {
         topLayer.ellipse(x, y, brushSize, brushSize);
         topLayer.noErase();
   
-        const radiusSquared = (brushSize / 2) ** 2;
-        for (let i = Math.max(0, y - brushSize / 2); i < Math.min(p.height, y + brushSize / 2); i++) {
-          for (let j = Math.max(0, x - brushSize / 2); j < Math.min(p.width, x + brushSize / 2); j++) {
-            const dx = j - x;
-            const dy = i - y;
-            if (dx * dx + dy * dy <= radiusSquared) {
-              const index = i * p.width + j;
-              if (!hasModified[index]) {
-                hasModified[index] = true;
-                modifiedPixels++;
-  
-                for (let imgIndex = 0; imgIndex < images.length; imgIndex++) {
-                  const col = imgIndex % 3;
-                  const row = Math.floor(imgIndex / 3);
-                  const cellWidth = p.width / 3;
-                  const cellHeight = p.height / 3;
-  
-                  const xStart = col * cellWidth;
-                  const yStart = row * cellHeight;
-  
-                  if (j >= xStart && j < xStart + cellWidth && i >= yStart && i < yStart + cellHeight) {
-                    revealedImages[imgIndex] = true;
-                  }
-                }
-              }
-            }
+const radiusSquared = (brushSize / 2) ** 2;
+for (let i = Math.max(0, y - brushSize / 2); i < Math.min(p.height, y + brushSize / 2); i++) {
+  for (let j = Math.max(0, x - brushSize / 2); j < Math.min(p.width, x + brushSize / 2); j++) {
+    const dx = j - x;
+    const dy = i - y;
+    if (dx * dx + dy * dy <= radiusSquared) {
+      const index = i * p.width + j;
+      if (!hasModified[index]) {
+        hasModified[index] = true;
+        modifiedPixels++;
+
+        const imgIndex = getImageIndex(j, i);
+        if (imgIndex !== -1) {
+          modifiedPixelsPerImage[imgIndex]++;
+          if (modifiedPixelsPerImage[imgIndex] >= totalPixelsPerImage * 0.4) {
+            revealedImages[imgIndex] = true;
           }
         }
       }
+    }
+  }
+}
 
+function getImageIndex(x, y) {
+  const maxImagesPerRow = 3;
+  const maxRows = 3;
+  const canvasWidth = p.width;
+  const canvasHeight = p.height;
+
+  const cellWidth = canvasWidth / maxImagesPerRow;
+  const cellHeight = canvasHeight / maxRows;
+
+  for (let imgIndex = 0; imgIndex < images.length; imgIndex++) {
+    const col = imgIndex % maxImagesPerRow;
+    const row = Math.floor(imgIndex / maxImagesPerRow);
+    const xStart = col * cellWidth;
+    const yStart = row * cellHeight;
+
+    if (x >= xStart && x < xStart + cellWidth && y >= yStart && y < yStart + cellHeight) {
+      return imgIndex;
+    }
+  }
+  return -1;
+}
+      }
       // Mise à jour de la barre de progression : la barre doit atteindre 100% quand on atteint maxPercentage (21)
 const progressBar = document.getElementById('progress-bar');
 const progressBarWidth = p.map(percentage, 0, maxPercentage, 0, 100);
 progressBar.style.width = progressBarWidth + '%';
-
 
   
     if (!soundPlaying) {
@@ -254,3 +273,4 @@ progressBar.style.width = progressBarWidth + '%';
       }
     };
   }
+  
