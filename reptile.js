@@ -254,4 +254,3 @@ progressBar.style.width = progressBarWidth + '%';
       }
     };
   }
-  
