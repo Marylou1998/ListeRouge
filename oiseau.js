@@ -40,6 +40,8 @@ export default function(p) {
   p.setup = function() {
     p.createCanvas(720, 380);
 
+    document.getElementById('progress-bar').style.width = '0%';
+
     const canvasElement = p.canvas;
     canvasElement.classList.add('canvas-center');
 
@@ -155,6 +157,7 @@ export default function(p) {
       // Déclencher la confettis et le mini-jeu
       triggerConfetti();
       completeMiniGame('oiseau');
+
   
       const perdrixButton = document.querySelector('button[onclick="loadGame(\'oiseau\')"]');
       if (perdrixButton) {
