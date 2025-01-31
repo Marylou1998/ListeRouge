@@ -19,6 +19,8 @@ export default function(p) {
   ];
   let images = [];
   let revealedImages = [];
+  let totalPixelsPerImage;
+  let modifiedPixelsPerImage;
 
 
   p.preload = function() {
@@ -82,9 +84,10 @@ export default function(p) {
     topLayer.image(topImg, 0, 0);
 
     totalPixels = p.width * p.height;
-    hasModified = new Array(totalPixels).fill(false);
-
+    totalPixelsPerImage = (p.width * p.height) / images.length;
+    modifiedPixelsPerImage = new Array(images.length).fill(0);
     revealedImages = new Array(images.length).fill(false);
+    hasModified = new Array(p.width * p.height).fill(false);
 
     p.noStroke();
 
@@ -191,31 +194,44 @@ let messageContent = '<h1>En Suisse, 79% des amphibiens sont des espèces menac�
             if (!hasModified[index]) {
               hasModified[index] = true;
               modifiedPixels++;
-              for (let imgIndex = 0; imgIndex < images.length; imgIndex++) {
-                const col = imgIndex % 2;
-                const row = Math.floor(imgIndex / 2);
-                
-                const cellWidth = p.width / 2;
-
-                const firstRowHeight = (2 / 3) * p.height; // Hauteur de la première ligne : 2/3 de la hauteur totale
-                const secondRowHeight = (1 / 3) * p.height; // Hauteur de la deuxième ligne : 1/3 de la hauteur totale
-                
-                const cellHeight = row === 0 ? firstRowHeight / 2 : secondRowHeight / 2;
-
-                const xStart = col * cellWidth;
-                const yStart = row === 0 ? 0 : firstRowHeight;
-
-
-                if (j >= xStart && j < xStart + cellWidth && i >= yStart && i < yStart + cellHeight) {
-                                revealedImages[imgIndex] = true;}
+      
+              const imgIndex = getImageIndex(j, i);
+              if (imgIndex !== -1) {
+                modifiedPixelsPerImage[imgIndex]++;
+                if (modifiedPixelsPerImage[imgIndex] >= totalPixelsPerImage * 0.2) {
+                  revealedImages[imgIndex] = true;
                 }
               }
             }
-  }
-}
-}
+          }
+        }
+      }
+      
+      function getImageIndex(x, y) {
+        const maxImagesPerRow = 2;
+        const canvasWidth = p.width;
+        const canvasHeight = p.height;
+      
+        const cellWidth = canvasWidth / maxImagesPerRow;
+        const firstRowHeight = (2 / 3) * canvasHeight;
+        const secondRowHeight = (1 / 3) * canvasHeight;
+      
+        for (let imgIndex = 0; imgIndex < images.length; imgIndex++) {
+          const col = imgIndex % maxImagesPerRow;
+          const row = Math.floor(imgIndex / maxImagesPerRow);
+          const cellHeight = row === 0 ? firstRowHeight / 2 : secondRowHeight / 2;
+          const xStart = col * cellWidth;
+          const yStart = row === 0 ? 0 : firstRowHeight;
+      
+          if (x >= xStart && x < xStart + cellWidth && y >= yStart && y < yStart + cellHeight) {
+            return imgIndex;
+          }
+        }
+        return -1;
+      }
+    }      
 
-    // Mise à jour de la barre de progression : la barre doit atteindre 100% quand on atteint maxPercentage (20)
+// Mise à jour de la barre de progression : la barre doit atteindre 100% quand on atteint maxPercentage (20)
 const progressBar = document.getElementById('progress-bar');
 const progressBarWidth = p.map(percentage, 0, maxPercentage, 0, 100);
 progressBar.style.width = progressBarWidth + '%';
