@@ -10,6 +10,8 @@ export default function(p) {
   let confettiImg; //icon mammifère
   let sound;
   let soundPlaying = false
+  let totalPixelsPerImage;
+  let modifiedPixelsPerImage;
 
   const imagePaths = [
     '/images/lynx.jpg',
@@ -75,10 +77,10 @@ export default function(p) {
     topLayer.image(topImg, 0, 0);
 
     totalPixels = p.width * p.height;
-    hasModified = new Array(totalPixels).fill(false);
-
-    //Ici pour pouvoir calculer si l'image a été grattée ou pas pour la récompense.
+    totalPixelsPerImage = (p.width * p.height) / images.length;
+    modifiedPixelsPerImage = new Array(images.length).fill(0);
     revealedImages = new Array(images.length).fill(false);
+    hasModified = new Array(p.width * p.height).fill(false);
 
     p.noStroke();
 };
@@ -187,7 +189,6 @@ export default function(p) {
       topLayer.erase();
       topLayer.ellipse(x, y, brushSize, brushSize);
       topLayer.noErase();
-
       const radiusSquared = (brushSize / 2) ** 2;
       for (let i = Math.max(0, y - brushSize / 2); i < Math.min(p.height, y + brushSize / 2); i++) {
         for (let j = Math.max(0, x - brushSize / 2); j < Math.min(p.width, x + brushSize / 2); j++) {
@@ -198,18 +199,11 @@ export default function(p) {
             if (!hasModified[index]) {
               hasModified[index] = true;
               modifiedPixels++;
-
-              //Vérifier que les pixels effacés correspondent à une certaine "zone", cad celle de la vignette au-dessous. DOnc donner les mêmes dimensions (2x3 etc) pour chaque jeu.
-              for (let imgIndex = 0; imgIndex < images.length; imgIndex++) {
-                const col = imgIndex % 3;
-                const row = Math.floor(imgIndex / 3);
-                const cellWidth = p.width / 3;
-                const cellHeight = p.height / 2;
-
-                const xStart = col * cellWidth;
-                const yStart = row * cellHeight;
-
-                if (j >= xStart && j < xStart + cellWidth && i >= yStart && i < yStart + cellHeight) {
+      
+              const imgIndex = getImageIndex(j, i);
+              if (imgIndex !== -1) {
+                modifiedPixelsPerImage[imgIndex]++;
+                if (modifiedPixelsPerImage[imgIndex] >= totalPixelsPerImage * 0.4) {
                   revealedImages[imgIndex] = true;
                 }
               }
@@ -217,12 +211,35 @@ export default function(p) {
           }
         }
       }
-    }
+      
+      function getImageIndex(x, y) {
+        const maxImagesPerRow = 3;
+        const maxRows = 2;
+        const canvasWidth = p.width;
+        const canvasHeight = p.height;
+      
+        const cellWidth = canvasWidth / maxImagesPerRow;
+        const cellHeight = canvasHeight / maxRows;
+      
+        for (let imgIndex = 0; imgIndex < images.length; imgIndex++) {
+          const col = imgIndex % maxImagesPerRow;
+          const row = Math.floor(imgIndex / maxImagesPerRow);
+          const xStart = col * cellWidth;
+          const yStart = row * cellHeight;
+      
+          if (x >= xStart && x < xStart + cellWidth && y >= yStart && y < yStart + cellHeight) {
+            return imgIndex;
+          }
+        }
+        return -1;
+      }
+    }      
 
-    // Mise à jour de la barre de progression : la barre doit atteindre 100% quand on atteint maxPercentage (65)
+// Mise à jour de la barre de progression : la barre doit atteindre 100% quand on atteint maxPercentage (65)
 const progressBar = document.getElementById('progress-bar');
 const progressBarWidth = p.map(percentage, 0, maxPercentage, 0, 100);
 progressBar.style.width = progressBarWidth + '%';
+
 
     if (!soundPlaying) {
       sound.loop();
