@@ -76,10 +76,15 @@ function draw() {
 document.addEventListener('DOMContentLoaded', () => {
   const miniGames = ['lynx', 'oiseau', 'couleuvre', 'salamandre'];
   const completedGames = new Set();
+  const collectedImages = {}; // Stocke les images révélées de chaque mini-jeu
+
 
   //une fois tous les mini jeux complétés, les "crédits" s'affichent. Liste complète des animaux sur les listes rouges, sauf ceux qui ne sont pas menacés, et ceux qui sont éteints en SUisse.
   function checkAllGamesCompleted() {
     if (completedGames.size === miniGames.length) {
+      
+      showFinalOverlay();
+
       const cornerDiv = document.createElement('div');
       cornerDiv.id = 'cornerMessage';
         //j'aurais pu déplacer ça dans le CSS. Pas d'explication.
@@ -128,13 +133,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   
-window.completeMiniGame = function (gameName) {
+  window.completeMiniGame = function (gameName, revealedImages = []) {
     if (!completedGames.has(gameName)) {
       completedGames.add(gameName);
+      collectedImages[gameName] = revealedImages;
       checkAllGamesCompleted();
     }
   };
-});
+
+  function showFinalOverlay() {
+  const overlay = document.createElement('div');
+  overlay.id = 'final-overlay';
+  overlay.style.position = 'fixed';
+  overlay.style.top = '50%';
+  overlay.style.left = '50%';
+  overlay.style.transform = 'translate(-50%, -50%)';
+  overlay.style.width = '50vw';
+  overlay.style.height = '80vh';
+  overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+  overlay.style.color = 'white';
+  overlay.style.padding = '20px';
+  overlay.style.overflowY = 'auto';
+  overlay.style.zIndex = '2000';
+  overlay.style.borderRadius = '10px';
+
+
+}});
 
 document.addEventListener("DOMContentLoaded", function () {
   const infoButton = document.getElementById("info-button");
