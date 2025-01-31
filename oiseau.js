@@ -12,7 +12,7 @@ export default function(p) {
   let soundPlaying = false;
 
   const imagePaths = [
-    '/images/tétras.png',
+    '/images/tetras.png',
     '/images/Engoulevent.png',
     '/images/grandduc1.png',
     '/images/harle.png',
@@ -22,6 +22,8 @@ export default function(p) {
 
   let images = [];
   let revealedImages = [];
+  let totalPixelsPerImage;
+  let modifiedPixelsPerImage;
 
   p.preload = function() {
     for (let path of imagePaths) {
@@ -72,9 +74,11 @@ export default function(p) {
     topLayer.image(topImg, 0, 0);
 
     totalPixels = p.width * p.height;
-    hasModified = new Array(totalPixels).fill(false);
-
+    totalPixelsPerImage = (p.width * p.height) / images.length;
+    modifiedPixelsPerImage = new Array(images.length).fill(0);
     revealedImages = new Array(images.length).fill(false);
+    hasModified = new Array(p.width * p.height).fill(false);
+
 
     p.noStroke();
   };
@@ -127,42 +131,31 @@ export default function(p) {
 
   p.mouseDragged = function() {
     const percentage = p.getCoveredPercentage();
-
-      if (percentage >= maxPercentage) {
-        let messageContent = '<h1>En Suisse, 60% des oiseaux nicheurs sont des espèces menacées.</h1><br>Tu as réussi à trouver :';
-        //source : https://www.bafu.admin.ch/bafu/fr/home/themes/biodiversite/publications/publications-biodiversite/liste-rouge-oiseaux-nicheurs-2021.html
-    
-        if (revealedImages[0]) {
-          messageContent += '<br>le <b>grand tétras</b>';
-        }
-        if (revealedImages[1]) {
-          messageContent += '<br>l\'<b>engoulevent</b>';
-        }
-        if (revealedImages[2]) {
-          messageContent += '<br>le <b>hibou grand duc</b>';
-        }
-        if (revealedImages[3]) {
-          messageContent += '<br>le <b>harle huppé</b>';
-        }
-        if (revealedImages[4]) {
-          messageContent += '<br>le <b>héron cendré</b>';
-        }
-        if (revealedImages[5]) {
-          messageContent += '<br>la <b>perdrix</b>';
-        }
-
-        messageContent += '<br><br>Le chant que tu entends est celui du <b>cochevis huppé</b>. Il est éteint en Suisse depuis 1976.<br><br>';
-    
-        document.getElementById('message').innerHTML = messageContent;
-
-
+  
+    if (percentage >= maxPercentage) {
+      let messageContent = '<h1>En Suisse, 60% des oiseaux nicheurs sont des espèces menacées.</h1><br>Tu as réussi à trouver :';
+  
+      // Affichage des oiseaux révélés
+      if (revealedImages[0]) { messageContent += '<br>le <b>grand tétras</b>'; }
+      if (revealedImages[1]) { messageContent += '<br>l\'<b>engoulevent</b>'; }
+      if (revealedImages[2]) { messageContent += '<br>le <b>hibou grand duc</b>'; }
+      if (revealedImages[3]) { messageContent += '<br>le <b>harle huppé</b>'; }
+      if (revealedImages[4]) { messageContent += '<br>le <b>héron cendré</b>'; }
+      if (revealedImages[5]) { messageContent += '<br>la <b>perdrix</b>'; }
+  
+      messageContent += '<br><br>Le chant que tu entends est celui du <b>cochevis huppé</b>. Il est éteint en Suisse depuis 1976.<br><br>';
+      
+      document.getElementById('message').innerHTML = messageContent;
+  
+      // Jouer le son de succès si ce n'est pas déjà fait
       if (!successSound.isPlaying()) {
         successSound.play();
       }
-
+  
+      // Déclencher la confettis et le mini-jeu
       triggerConfetti();
       completeMiniGame('oiseau');
-
+  
       const perdrixButton = document.querySelector('button[onclick="loadGame(\'oiseau\')"]');
       if (perdrixButton) {
         perdrixButton.classList.add('button-perdrix');     
@@ -170,39 +163,32 @@ export default function(p) {
       }
       return;
     }
-
+  
     const x = Math.floor(p.mouseX);
     const y = Math.floor(p.mouseY);
-
+  
     if (x >= 0 && y >= 0 && x < p.width && y < p.height) {
       topLayer.erase();
       topLayer.ellipse(x, y, brushSize, brushSize);
       topLayer.noErase();
-
+  
       const radiusSquared = (brushSize / 2) ** 2;
       for (let i = Math.max(0, y - brushSize / 2); i < Math.min(p.height, y + brushSize / 2); i++) {
         for (let j = Math.max(0, x - brushSize / 2); j < Math.min(p.width, x + brushSize / 2); j++) {
-          const dx = j - x;
-          const dy = i - y;
-          if (dx * dx + dy * dy <= radiusSquared) {
-            const index = i * p.width + j;
-            if (!hasModified[index]) {
-              hasModified[index] = true;
-              modifiedPixels++;
-
-              // Check if the pixel corresponds to a specific image region
-              for (let imgIndex = 0; imgIndex < images.length; imgIndex++) {
-                const col = imgIndex % 3;
-                const row = Math.floor(imgIndex / 3);
-                const cellWidth = p.width / 3;
-                const cellHeight = p.height / 2;
-
-                const xStart = col * cellWidth;
-                const yStart = row * cellHeight;
-
-                if (j >= xStart && j < xStart + cellWidth && i >= yStart && i < yStart + cellHeight) {
-                  revealedImages[imgIndex] = true;
-                }
+            const dx = j - x;
+            const dy = i - y;
+            if (dx * dx + dy * dy <= radiusSquared) {
+                const index = i * p.width + j;
+                if (!hasModified[index]) {
+                    hasModified[index] = true;
+                    modifiedPixels++;
+                    
+                    const imgIndex = getImageIndex(j, i);
+                    if (imgIndex !== -1) {
+                        modifiedPixelsPerImage[imgIndex]++;
+                        if (modifiedPixelsPerImage[imgIndex] >= totalPixelsPerImage * 0.4) {
+                            revealedImages[imgIndex] = true;
+                        }
               }
             }
           }
@@ -210,17 +196,30 @@ export default function(p) {
       }
     }
 
-    // Mise à jour de la barre de progression : la barre doit atteindre 100% quand on atteint maxPercentage (42)
-const progressBar = document.getElementById('progress-bar');
-const progressBarWidth = p.map(percentage, 0, maxPercentage, 0, 100);
-progressBar.style.width = progressBarWidth + '%';
-
-
+    function getImageIndex(x, y) {
+      const maxImagesPerRow = 3;
+      const maxRows = 2;
+      const cellWidth = p.width / maxImagesPerRow;
+      const cellHeight = p.height / maxRows;
+  
+      const col = Math.floor(x / cellWidth);
+      const row = Math.floor(y / cellHeight);
+      const index = row * maxImagesPerRow + col;
+  
+      return index < images.length ? index : -1;
+  }
+  
+    // Mise à jour de la barre de progression : la barre doit atteindre 100% quand on atteint maxPercentage (65)
+    const progressBar = document.getElementById('progress-bar');
+    const progressBarWidth = p.map(percentage, 0, maxPercentage, 0, 100);
+    progressBar.style.width = progressBarWidth + '%';
+  
     if (!soundPlaying) {
       sound.loop();
       soundPlaying = true;
     }
   };
+  
 
   p.mouseReleased = function() {
     if (soundPlaying) {
