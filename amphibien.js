@@ -4,7 +4,7 @@ export default function(p) {
   let totalPixels;
   let hasModified = [];
   const brushSize = 80;
-  const maxPercentage = 20;
+  const maxPercentage = 21;
   let successSound;
   let confetti = [];
   let confettiImg;
@@ -37,6 +37,8 @@ export default function(p) {
 
     p.setup = function() {
       p.createCanvas(720, 410);
+
+      document.getElementById('progress-bar').style.width = '0%';
     
       const canvasElement = p.canvas;
       canvasElement.classList.add('canvas-center');
@@ -168,6 +170,8 @@ let messageContent = '<h1>En Suisse, 79% des amphibiens sont des esp√®ces menac√
         triggerConfetti();
        
         completeMiniGame('amphibien');
+
+
         const amphibienButton = document.querySelector('button[onclick="loadGame(\'amphibien\')"]');
 
   if (amphibienButton) {
