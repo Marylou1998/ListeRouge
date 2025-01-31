@@ -41,6 +41,8 @@ export default function(p) {
   p.setup = function() {
     p.createCanvas(620, 550);
 
+    document.getElementById('progress-bar').style.width = '0%';
+
     const canvasElement = p.canvas;
     canvasElement.classList.add('canvas-center');
 
@@ -173,6 +175,7 @@ export default function(p) {
       triggerConfetti();
       
       completeMiniGame('lynx');
+
 
       //pour afficher la progression dans le bouton "Les mammifères grands et moyens"
       const lynxButton = document.querySelector('button[onclick="loadGame(\'lynx\')"]');
